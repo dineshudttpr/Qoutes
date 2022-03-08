@@ -8,20 +8,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 @RestController
 public class QoutesController {
 
 
 
-    @GetMapping("/qoutes/{id}")
-    public String getQoutes(@PathVariable int id) throws IOException {
+    @GetMapping("/qoutes")
+    public String getQoutes() throws IOException {
 
         InputStream inputStream = getClass()
                 .getClassLoader().getResourceAsStream("data.txt");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
+        Random rm = new Random();
+        int id = rm.nextInt(50);
         String line ;
         int count =1;
         while ((line = br.readLine()) != null) {
